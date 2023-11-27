@@ -7,10 +7,10 @@ const password = process.env.TD_PASSWORD;
 async function getCreditBalance() {
 
     const browser = await puppeteer.launch({ headless: false });
+    let lastStatementBalance = '';
     try {
         const page = await browser.newPage();
         await page.goto('https://www.td.com/ca/en/personal-banking');
-
 
         const loginButtonHref = await page.evaluate(() => document.querySelector("#button-0087a7942e").href);
 
@@ -33,12 +33,17 @@ async function getCreditBalance() {
 
         await page.waitForNavigation({waitUntil: 'networkidle2'});
 
-        const lastStatementBalance =  await page.evaluate(() => document.querySelector('#mainContent > div.treetop.ccaa > ezw-cc-account-summary > div > div.secondary-info.columnView.ng-star-inserted > div:nth-child(1) > div.sectionColumn2.summary__content > div.uf-display4.tduf-s.summary__content.ng-star-inserted').innerText);
-        return lastStatementBalance;
+        lastStatementBalance =  await page.evaluate(() => document.querySelector('#mainContent > div.treetop.ccaa > ezw-cc-account-summary > div > div.secondary-info.columnView.ng-star-inserted > div:nth-child(1) > div.sectionColumn2.summary__content > div.uf-display4.tduf-s.summary__content.ng-star-inserted').innerText);
+        
     
     } catch (e) {
         console.log(e);
+    } finally {
+        // console.log(lastStatementBalance);
+        await browser.close();
+        return lastStatementBalance;
     }
 }
 module.exports = getCreditBalance;
 
+// getCreditBalance();
