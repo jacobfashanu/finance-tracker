@@ -1,0 +1,20 @@
+{
+  "name": "email-nodeapp",
+  "version": "1.0.0",
+  "description": "",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node main"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "node-cron": "^3.0.3",
+    "nodemailer": "^6.9.7",
+    "puppeteer": "^21.5.2",
+    "smpp": "^0.6.0-rc.4",
+    "textbelt": "^0.0.4"
+  }
+}
