@@ -5,14 +5,15 @@ const username = process.env.TD_USERNAME;
 const password = process.env.TD_PASSWORD;
 
 async function getCreditBalance() {
+    const arguments = process.env.NODE_ENV === "production" ? [
+        "--disable-setuid-sandbox",
+        "--no-sandbox",
+        "--single-process",
+        "--no-zygote" 
+    ] : [];
 
     const browser = await puppeteer.launch({ 
-        // args: [
-        //     "--disable-setuid-sandbox",
-        //     "--no-sandbox",
-        //     "--single-process",
-        //     "--no-zygote" 
-        // ],
+        args: arguments,
         headless: false, 
         executablePath: process.env.NODE_ENV === "production" 
         ? process.env.PUPPETEER_EXECUTABLE_PATH
