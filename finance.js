@@ -14,7 +14,9 @@ async function getCreditBalance() {
 
     const browser = await puppeteer.launch({ 
         args: arguments,
-        headless: false, 
+        headless: process.env.NODE_ENV === "production" 
+        ? true 
+        : false, 
         executablePath: process.env.NODE_ENV === "production" 
         ? process.env.PUPPETEER_EXECUTABLE_PATH
         : puppeteer.executablePath()
