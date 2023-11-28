@@ -51,11 +51,9 @@ async function getCreditBalance() {
     } catch (e) {
         console.log(e);
     } finally {
-        // console.log(lastStatementBalance);
         await browser.close();
         return lastStatementBalance;
     }
 }
 module.exports = getCreditBalance;
 
-// getCreditBalance();

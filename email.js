@@ -29,13 +29,6 @@ function sendReminderEmail (subject, text) {
     });
 }
 
-// const subject = "Reminder to pay credit card payment";
-// const text = "Stop being a fool, pay your bill goof ball";
-
-// console.log(__dirname);
-
-// sendReminderEmail(subject, text);
-
 
 module.exports = sendReminderEmail;
 
